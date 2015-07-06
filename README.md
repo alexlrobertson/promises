@@ -100,6 +100,15 @@ thisHappens()
   });
 ```
 
+## Async
+
+```javascript
+async function getResource(id) {
+  let resource = await fetch(`http://example.com/resource/${id}`);
+  console.log(resource);
+}
+```
+
 ## Quirks
 
 * You can't resolve a promise to itself (https://promisesaplus.com/#point-48)
