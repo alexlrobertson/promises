@@ -48,6 +48,20 @@ An action that can be resumed later
   * Can not transition to any other state
   * Must have a reason, which is immutable
 
+## `then`
+
+* Takes two arguments: `onFullfilled`, `onRejected`
+* Both are optional and must be functions
+* Registers handlers which will be called when their respective states are invoked
+* `then` may be called multiple times on the same promise (callbacks execute in registration order)
+* Returns a promise
+
+## Resolution
+
+* If resolved to a promise, adopt its state and values
+* If resolved with a object or function, if it is `thenable`, add it to the promise chain
+* If resolved with something else, just fulfill it
+
 ## Problems it Solves
 
 ## Chain
@@ -85,5 +99,9 @@ thisHappens()
     console.error(err);
   });
 ```
+
+## Quirks
+
+* You can't resolve a promise to itself (https://promisesaplus.com/#point-48)
 
 http://dictionary.reference.com/browse/promise?s=t
