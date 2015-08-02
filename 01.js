@@ -38,6 +38,7 @@ Promise.resolve('foo')
 /*
  * We can solve this pattern by always ending our chain with 
  * a single `.catch` call. The error will be caught and handled by catch handler.
+ * The catch call should be placed in the final consumer of the promise chain.
  */
 Promise.resolve('foo')
     .then(function (result) {

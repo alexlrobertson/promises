@@ -18,14 +18,15 @@
 
     return deferred.promise;
 }())
+
+    // down the promise chain
     .then(function (things) {
         // consoles `[]`
         console.log(things);
     });
 
 /**
- * a typical situation where errors and non-ideal cases are handled
- * by resolving to a default value
+ * Errors in the outer function are not caught by the promise chain.
  */
 try {
     (function () {
@@ -55,25 +56,24 @@ try {
 }
 
 /**
+ * To solve for this anti-pattern, we use the existing promise 
+ * and return from our `catch` statement
  */
 (function () {
-    return new Promise(function (resolve, reject) {
-        Promise.resolve()
-            .then(function (things) {
-                return things.map(function (item) {
-                    return item;
-                });
-            })
-            .then(function (things) {
-                resolve(things);
-            })
-            .catch(function (err) {
-                console.error(err);
-                resolve([]);
+    fetch('http://example.com')
+        .then(function (things) {
+            return things.map(function (item) {
+                return item;
             });
-    });
+        })
+        .catch(function (err) {
+            console.error(err);
+            return [];
+        });
 }())
+
+    // down the promise chain
     .then(function (things) {
-        // consoles `[]`
+        // consoles `[]` regardless
         console.log(things);
     });
