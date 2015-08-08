@@ -6,13 +6,13 @@
 
 > a declaration that something will or will not be done, given, etc., by one
 
-A declaration that something will successfully be resolved or rejected and only once.
+A declaration that something will resolve or reject and only once.
 
-A Promise cannot be resolved or rejected more than once.
+A Promise cannot resolve or reject more than once.
 
 > something that has the effect of an express assurance; indication of what may be expected
 
-A single thing which we can be assured of its type before being given it.
+A single thing which we can assure of its type before utilizing it.
 
 Promises should resolve to one type of object. Resolving to different types is confusing and reduces clarity about the system.
 
@@ -20,11 +20,11 @@ Promises should resolve to one type of object. Resolving to different types is c
 
 > postponed or delayed
 
-Something that has been paused, awaiting something.
+Something that has paused, awaiting something.
 
 > suspended or withheld for or until a certain time or event
 
-An action that can be resumed later
+An action that can resume later
 
 ## Terminology
 
@@ -32,7 +32,7 @@ An action that can be resumed later
 * "thenable" - object or function that defines a `then` method
 * "value" - any legal ECMAScript value
 * "exception" - value thrown using a `throw` statement
-* "reason" - a value that indicates why a promise was rejected
+* "reason" - a value that indicates why a promise rejected
 
 [Promise/A+](https://promisesaplus.com/)
 
@@ -52,8 +52,8 @@ An action that can be resumed later
 
 * Takes two arguments: `onFullfilled`, `onRejected`
 * Both are optional and must be functions
-* Registers handlers which will be called when their respective states are invoked
-* `then` may be called multiple times on the same promise (callbacks execute in registration order)
+* Registers handlers which will execute when their respective states are invoked
+* `then` may execute many times on the same promise (callbacks execute in registration order)
 * Returns a promise
 
 ## Resolution
@@ -68,7 +68,7 @@ An action that can be resumed later
 
 ```javascript
 try {
-  // a thrown error on any line within this block will be caught
+  // a thrown error on any line within this block will catch
   return finallyThis(
     thenThis(
       thisHappens(result)
